@@ -1,0 +1,7 @@
+# Netlify: οι εικόνες και τα icons κρατιούνται στον browser για 1 χρόνο.
+# Αν αλλάξεις μια εικόνα, δώσε της καινούργιο όνομα.
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable

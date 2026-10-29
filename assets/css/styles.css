@@ -1,0 +1,1037 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* FONTS: άλλαξε μόνο αυτές τις δύο γραμμές */
+  --font-head: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --bg: #ffffff;
+  --bg-sand: #f4efe7;
+  --ink: #1b1712;
+  --ink-hover: #3a332b;
+  --muted: #6e665d;
+  --rule: #e3dcd1;
+  --wood: #8a5a2e;
+  --overlay: rgba(18, 12, 6, 0.78);
+  --small-spacing: -0.02em;
+  --head-spacing: -0.025em;
+  --ease: cubic-bezier(0.25, 0.6, 0.25, 1);
+  --shadow-min: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--wood);
+  outline-offset: 4px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+section {
+  scroll-margin-top: 60px;
+}
+
+.hero-wrapper,
+.story-wrapper,
+.services-wrapper,
+.process-wrapper,
+.where-wrapper,
+.faq-wrapper,
+.contact-wrapper,
+.footer-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: var(--head-spacing);
+}
+
+h2 {
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
+}
+
+p {
+  max-width: 36em;
+}
+
+/*==== BUTTONS ====*/
+.cta-btn-primary,
+.cta-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.cta-btn-primary {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.cta-btn-primary:hover {
+  background: var(--bg-sand);
+}
+
+.cta-btn-dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.cta-btn-dark:hover {
+  background: var(--ink-hover);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/*==== NAV BAR ====*/
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  z-index: 999;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+}
+
+.site-header-solid,
+.no-scroll .site-header {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 1px 0 var(--rule);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  max-width: 1280px;
+  height: 80px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  gap: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.15;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s;
+}
+
+.site-header-solid .brand-logo,
+.no-scroll .brand-logo {
+  filter: none;
+}
+
+.brand-name small {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto;
+  list-style: none;
+}
+
+.nav-menu a {
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.nav-menu a:hover {
+  opacity: 1;
+}
+
+.call-now {
+  padding: 9px 16px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.hamburger-button {
+  display: none;
+  border: none;
+  background: none;
+}
+
+/*==== HERO ====*/
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 45%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--overlay) 0%,
+      rgba(18, 12, 6, 0.45) 45%,
+      rgba(18, 12, 6, 0.05) 100%
+    ),
+    linear-gradient(0deg, rgba(18, 12, 6, 0.55) 0%, rgba(18, 12, 6, 0) 40%);
+}
+
+.hero-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 140px;
+  padding-bottom: 48px;
+}
+
+.hero h1 {
+  font-size: clamp(2.9rem, 7vw, 6.5rem);
+  max-width: 11em;
+  margin-bottom: 26px;
+}
+
+.hero-paragraph {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  max-width: 30em;
+  margin-bottom: 38px;
+  opacity: 0.92;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 48px;
+  margin-top: 72px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.95rem;
+  list-style: none;
+}
+
+.hero-facts strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/*==== ΤΟ ΕΡΓΑΣΤΗΡΙΟ ====*/
+.story {
+  padding: 140px 0;
+}
+
+.story-wrapper {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  align-items: center;
+  gap: 96px;
+}
+
+.story-big {
+  font-family: var(--font-head);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.22;
+  letter-spacing: var(--small-spacing);
+  max-width: none;
+  margin-bottom: 32px;
+}
+
+.story-paragraph {
+  color: var(--muted);
+}
+
+/*==== ΑΠΟ ΓΕΝΙΑ ΣΕ ΓΕΝΙΑ ====*/
+.growth {
+  justify-self: end;
+  width: 100%;
+  max-width: 460px;
+}
+
+.growth-title {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.growth-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 460 / 260;
+}
+
+.growth-trunk {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56.5%;
+  height: 100%;
+  object-fit: contain;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1.6s var(--ease);
+}
+
+.growth-tags {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.growth-tags path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 0.9s ease;
+}
+
+.growth-tags circle {
+  fill: var(--wood);
+  stroke: #fff;
+  stroke-width: 1.5;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.growth-tags text {
+  font-family: var(--font-body);
+  font-size: 17px;
+  fill: var(--ink);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.growth-tags .tag-sub {
+  font-size: 13px;
+  fill: var(--muted);
+}
+
+.tag-one circle {
+  transition-delay: 0.2s;
+}
+
+.tag-one path {
+  transition-delay: 0.3s;
+}
+
+.tag-one text {
+  transition-delay: 0.7s;
+}
+
+.tag-two circle {
+  transition-delay: 1.1s;
+}
+
+.tag-two path {
+  transition-delay: 1.2s;
+}
+
+.tag-two text {
+  transition-delay: 1.6s;
+}
+
+/* όταν φαίνεται στην οθόνη, το script.js βάζει την κλάση growth-in */
+.growth-in .growth-trunk {
+  clip-path: circle(72% at 50% 50%);
+}
+
+.growth-in .growth-tags path {
+  stroke-dashoffset: 0;
+}
+
+.growth-in .growth-tags circle,
+.growth-in .growth-tags text {
+  opacity: 1;
+}
+
+.growth-sign {
+  margin-top: 18px;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.growth-sign strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/*==== ΤΙ ΦΤΙΑΧΝΟΥΜΕ ====*/
+.services {
+  padding: 130px 0;
+  background: var(--bg-sand);
+}
+
+.services-heading {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: center;
+  gap: 64px;
+  margin-bottom: 72px;
+}
+
+.services-paragraph {
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.services-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 48px;
+}
+
+.service-group h3 {
+  font-size: 1.6rem;
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.service-group ul {
+  list-style: none;
+}
+
+.service-group li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.05rem;
+}
+
+.services-note {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.services-note p {
+  font-size: 1.2rem;
+  max-width: 34em;
+}
+
+/*==== ΔΙΑΔΙΚΑΣΙΑ ====*/
+.process {
+  position: relative;
+  padding: 150px 0 120px 0;
+  color: #fff;
+  overflow: hidden;
+}
+
+.process-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+.process::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(18, 12, 6, 0.86) 0%,
+    rgba(18, 12, 6, 0.55) 55%,
+    rgba(18, 12, 6, 0.35) 100%
+  );
+}
+
+.process-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.process h2 {
+  margin-bottom: 18px;
+}
+
+.process-paragraph {
+  font-size: 1.2rem;
+  margin-bottom: 72px;
+  opacity: 0.9;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  list-style: none;
+}
+
+.process-steps li {
+  padding-top: 22px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.75);
+}
+
+.process-steps h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.process-steps p {
+  font-size: 1rem;
+  opacity: 0.88;
+}
+
+/*==== ΓΙΑ ΠΟΙΟΥΣ ΔΟΥΛΕΥΟΥΜΕ ====*/
+.where {
+  padding: 130px 0;
+}
+
+.where-who {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 64px;
+}
+
+.where-who ul {
+  list-style: none;
+}
+
+.where-who li {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.where-who li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.where-who strong {
+  font-weight: 600;
+}
+
+.where-who span {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/*==== ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ ====*/
+.faq {
+  padding: 130px 0;
+  background: var(--bg-sand);
+}
+
+.faq-wrapper {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 64px;
+}
+
+.faq details {
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.faq details:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: transform 0.25s;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/*==== ΕΠΙΚΟΙΝΩΝΙΑ ====*/
+.contact {
+  padding: 130px 0 90px 0;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  align-items: center;
+  gap: 72px;
+}
+
+.contact h2 {
+  margin-bottom: 16px;
+}
+
+.contact-paragraph {
+  color: var(--muted);
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 12px 32px;
+  margin: 32px 0 36px 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.05rem;
+}
+
+.contact-details dt {
+  color: var(--muted);
+}
+
+.contact-details a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+
+.contact-details a:hover {
+  text-decoration-color: var(--wood);
+}
+
+.contact-map {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg-sand);
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.35) contrast(1.05);
+}
+
+/*==== FOOTER ====*/
+footer {
+  padding: 28px 0 36px 0;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  /*==== NAV BAR 1024 ====*/
+  .navbar {
+    height: 72px;
+  }
+
+  .call-now {
+    margin-left: auto;
+  }
+
+  .hamburger-button {
+    display: flex;
+    width: 32px;
+    height: 20px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .hamburger-button span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 20px;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .hamburger-button {
+    color: inherit;
+  }
+
+  .hamburger-button span:nth-child(1) {
+    top: 0;
+  }
+
+  .hamburger-button span:nth-child(2) {
+    top: 9px;
+  }
+
+  .hamburger-button span:nth-child(3) {
+    top: 18px;
+  }
+
+  .hamburger-button-open span:nth-child(1) {
+    opacity: 0;
+  }
+
+  .hamburger-button-open span:nth-child(2) {
+    transform: rotate(45deg);
+  }
+
+  .hamburger-button-open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .nav-menu a {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    opacity: 1;
+  }
+
+  .nav-menu-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /*==== ΤΟ ΕΡΓΑΣΤΗΡΙΟ 1024 ====*/
+  .story {
+    padding: 100px 0;
+  }
+
+  .story-wrapper {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .growth {
+    justify-self: start;
+  }
+
+  /*==== ΤΙ ΦΤΙΑΧΝΟΥΜΕ 1024 ====*/
+  .services {
+    padding: 100px 0;
+  }
+
+  .services-heading {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .services-groups {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /*==== ΔΙΑΔΙΚΑΣΙΑ 1024 ====*/
+  .process-steps {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 48px;
+  }
+
+  /*==== ΓΙΑ ΠΟΙΟΥΣ 1024 ====*/
+  .where {
+    padding: 100px 0;
+  }
+
+  .where-who {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /*==== ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ 1024 ====*/
+  .faq {
+    padding: 100px 0;
+  }
+
+  .faq-wrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /*==== ΕΠΙΚΟΙΝΩΝΙΑ 1024 ====*/
+  .contact {
+    padding: 100px 0 60px 0;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  /*==== BODY 768 ====*/
+  body {
+    font-size: 17px;
+  }
+
+  /*==== NAV BAR 768 ====*/
+  .navbar {
+    height: 64px;
+  }
+
+  .call-now {
+    display: none;
+  }
+
+  .hamburger-button {
+    margin-left: auto;
+  }
+
+  .brand-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  /*==== HERO 768 ====*/
+  .hero::after {
+    background: linear-gradient(
+      0deg,
+      rgba(18, 12, 6, 0.85) 0%,
+      rgba(18, 12, 6, 0.5) 55%,
+      rgba(18, 12, 6, 0.2) 100%
+    );
+  }
+
+  .hero-wrapper {
+    padding-top: 110px;
+    padding-bottom: 32px;
+  }
+
+  .hero-facts {
+    gap: 14px 28px;
+    margin-top: 48px;
+  }
+
+  /*==== ΤΟ ΕΡΓΑΣΤΗΡΙΟ 768 ====*/
+  .story {
+    padding: 80px 0;
+  }
+
+  /*==== ΤΙ ΦΤΙΑΧΝΟΥΜΕ 768 ====*/
+  .services {
+    padding: 80px 0;
+  }
+
+  .services-groups {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /*==== ΔΙΑΔΙΚΑΣΙΑ 768 ====*/
+  .process {
+    padding: 90px 0 70px 0;
+  }
+
+  .process-paragraph {
+    margin-bottom: 48px;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+
+  /*==== ΓΙΑ ΠΟΙΟΥΣ 768 ====*/
+  .where {
+    padding: 80px 0;
+  }
+
+  .where-who li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  /*==== ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ 768 ====*/
+  .faq {
+    padding: 80px 0;
+  }
+
+  .faq summary {
+    font-size: 1.15rem;
+  }
+
+  /*==== ΕΠΙΚΟΙΝΩΝΙΑ 768 ====*/
+  .contact {
+    padding: 80px 0 48px 0;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+  }
+
+  .contact-details dd {
+    margin-bottom: 12px;
+  }
+
+  .contact-details dd:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*==== ΛΙΓΟΤΕΡΗ ΚΙΝΗΣΗ (ρύθμιση συσκευής) ====*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .growth-trunk {
+    clip-path: none;
+    transition: none;
+  }
+
+  .growth-tags * {
+    transition: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
